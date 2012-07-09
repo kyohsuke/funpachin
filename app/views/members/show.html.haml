@@ -1,0 +1,25 @@
+- model_class = @member.class
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @member.name
+%p
+  %strong= model_class.human_attribute_name(:status_id) + ':'
+  %br
+  = Status.hashall[@member.status_id]
+%p
+  %strong= model_class.human_attribute_name(:twitter) + ':'
+  %br
+  = @member.twitter
+%p
+  %strong= model_class.human_attribute_name(:other) + ':'
+  %br
+  = @member.other
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), members_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_member_path(@member), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), member_path(@member), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

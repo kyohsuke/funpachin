@@ -1,0 +1,45 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "ふんパチ飲み会 ～ 2012 夏の陣 ～"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+    %link(href="images/favicon.ico" rel="shortcut icon")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
+
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container.nav-collapse
+          .brand= '飲み会名簿'
+          %ul.nav
+          %ul.nav.pull-right
+            %li= link_to "サインアウト", "/signout"
+    .container
+      .content
+        .row
+          .span9
+            = "Current Login: #{@current_user.screen_name}"
+            %br/
+            = yield
+          .span3
+            .well.sidebar-nav
+              %h3 Menu
+              %ul.nav.nav-list
+                %li= link_to "Top", "/admin"
+                %li.nav-header Administration
+                %li= link_to "参加者登録", "/admin/members"
+                %li= link_to "管理者登録", "/admin/account_managers"
+                %li= link_to "連絡登録", "/admin/news_feeds"
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

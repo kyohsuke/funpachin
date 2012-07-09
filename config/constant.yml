@@ -1,0 +1,8 @@
+production:
+  twitter:
+    token: 'tokens here'
+    secret: 'secrets here'
+development:
+  twitter:
+    token: 'tokens here'
+    secret: 'secrets here'

@@ -1,0 +1,21 @@
+= form_for @member, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :status_id, :class => 'control-label'
+    .controls
+      %select(class="number_field" id="member_status_id" name="member[status_id]" type="number") 
+        = options_from_collection_for_select(Status.all, :id, :detail, @member.status_id)
+  .control-group
+    = f.label :twitter, :class => 'control-label'
+    .controls
+      = f.text_field :twitter, :class => 'text_field'
+  .control-group
+    = f.label :other, :class => 'control-label'
+    .controls
+      = f.text_area :other, :class => 'text_area'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn'

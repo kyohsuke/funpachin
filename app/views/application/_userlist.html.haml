@@ -1,0 +1,37 @@
+%div.page-header
+  %h1= 'おしらせ'
+= "#{@news.nil? ? '特にありません' : @news.description}"
+%div.page-header
+  %h1= '参加者一覧'
+%br/
+- if (@duplicates[:twitter].count > 0 or @duplicates[:name].count > 0) and !@current_user.nil?
+  %font(color='#FF0000')
+    = "重複があります！！"
+    %br/
+    - @duplicates.each do |target,member|
+      = target
+      %br/
+      - member.each do |detail|
+        = "・#{detail[target]}"
+        %br/
+- @list.each do |header, list|
+  %h2= "#{header} (#{list.count}人)"
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th= "名前"
+        %th= "Twitterアカウント (あれば)"
+        %th= "備考"
+    %tbody
+      - list.each do |detail|
+        %tr
+          %td= detail[:name]
+          %td
+            - if !detail[:twitter].nil? and detail[:twitter].to_s.length > 0
+              %img(src="https://api.twitter.com/1/users/profile_image?screen_name=#{detail[:twitter]}&size=mini")
+              %a(href="http://twitter.com/#{detail[:twitter]}")
+                = "@#{detail[:twitter]}"
+            - else
+              = 'なし'
+          %td= detail[:other]
+
