@@ -22,3 +22,7 @@ Twitter 連携ってどうしたらいいんだろうとか、
 必要なアドオン
 =============
 * ClearDB MySQL Database
+
+ローカルでの起動
+=============
+* rake db:setup db:migrate db:seed してから unicorn_rails -c config/unicorn.rb
