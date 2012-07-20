@@ -26,3 +26,7 @@ Twitter 連携ってどうしたらいいんだろうとか、
 ローカルでの起動
 =============
 * rake db:setup db:migrate db:seed してから unicorn_rails -c config/unicorn.rb
+
+ライセンス
+=============
+NYSL です
